@@ -4,6 +4,8 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jms="http://www.springframework.org/schema/jms"
 	xmlns:amq="http://activemq.apache.org/schema/core"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:security="http://www.springframework.org/schema/security"	
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 						http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/context
@@ -12,6 +14,10 @@
         				http://www.springframework.org/schema/jms/spring-jms.xsd
         				http://activemq.apache.org/schema/core
         				http://activemq.apache.org/schema/core/activemq-core-5.9.0.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop.xsd        				
+						http://www.springframework.org/schema/security
+						http://www.springframework.org/schema/security/spring-security.xsd        				
         				">
 	
 	<bean id="tea" class="com.spring4.beans.Tea"/>
@@ -76,4 +82,18 @@
 	<!-- <bean class="com.spring4.processor.BeanFactoryPostProcessorDemo"/> -->
 	<!-- <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/> -->
 	<context:annotation-config/>
+	
+	<!-- Spring AOP -->
+	<bean id="testApp" class="com.spring4.training.aop.TestApplication"/>
+	<bean id="sampleAdvice" class="com.spring4.training.aop.SampleAdvice"/>
+	
+	<aop:aspectj-autoproxy/>
+	<!-- <aop:config>
+		<aop:aspect ref="sampleAdvice">
+			<aop:pointcut expression="execution(public void testMethod*())" id="samplePointcut"/>
+			<aop:before method="insertBefore" pointcut-ref="samplePointcut"/>
+			<aop:after method="insertAfter" pointcut-ref="samplePointcut"/>
+		</aop:aspect>
+	</aop:config> -->
+	
 </beans>

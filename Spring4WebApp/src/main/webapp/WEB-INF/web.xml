@@ -15,7 +15,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/mvc-dispatcher-servlet.xml</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
+		<load-on-startup>2</load-on-startup>
 	</servlet>
 	
 	<servlet-mapping>
@@ -26,8 +26,9 @@
 	<!-- Main configuration file for this Spring web application. -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			<!-- /WEB-INF/config/spring-jms.xml -->			
+		<param-value>			
+			<!-- /WEB-INF/config/spring-jms.xml -->
+			/WEB-INF/config/datasource.xml			
 			/WEB-INF/config/spring-security.xml
 		</param-value>
 	</context-param>
@@ -36,6 +37,11 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<!-- Session timeout duration -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
 
 	<!-- Character encoding for all request -->
 	<filter>

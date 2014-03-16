@@ -20,6 +20,14 @@
 						http://www.springframework.org/schema/security/spring-security.xsd        				
         				">
 	
+<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:spring.properties</value>
+		</property>
+	</bean> -->
+	
+	<!-- <context:property-placeholder location="classpath*:spring.properties"/> -->
+	<context:property-placeholder location="D:\\Karthick\\InstalledApps\\GitHub\\Sprin4WebApp\\Spring4WebApp\\src\\main\\java\\spring.properties"/>
 	<bean id="tea" class="com.spring4.beans.Tea"/>
 	
 	<!-- <bean id="restaurant" class="com.spring4.beans.Restaurant" scope="prototype" lazy-init="true" init-method="init" destroy-method="destroy"> -->
@@ -69,14 +77,7 @@
 			</props>
 		</property>
 	</bean>
-	<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<value>classpath:spring.properties</value>
-		</property>
-	</bean> -->
-	
-	<context:property-placeholder location="classpath*:spring.properties"/>
-	
+
 	<bean class="com.spring4.processor.BeanPostProcessorDemo"/>
 	<bean class="com.spring4.processor.BeanPostProcessorDemo1"/>
 	<!-- <bean class="com.spring4.processor.BeanFactoryPostProcessorDemo"/> -->

@@ -1,18 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 	<head>
-	    <title>Spring 3 hibernate integration example on www.howtodoinjava.com</title>
+	    <title>Employee Management Screen</title>
 	</head>
 	
 	<body>
 	  
-		<h2>Employee Management Screen : Spring 3 hibernate integration example on www.howtodoinjava.com</h2>
+		<h2>Employee Management Screen : Maven2 Spring4 hibernate4 Integration Example</h2>
 		  
 		<form:form method="post" action="add" commandName="employee">
 		  
@@ -48,12 +45,12 @@
 		      
 		<h3>Employees</h3>
 		<c:if  test="${!empty employeeList}">
-			<table class="data">
+			<table border="1">
 				<tr>
 				    <th>Name</th>
 				    <th>Email</th>
 				    <th>Telephone</th>
-				    <th>&amp;amp;amp;amp;amp;amp;nbsp;</th>
+				    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 				</tr>
 				<c:forEach items="${employeeList}" var="emp">
 				    <tr>

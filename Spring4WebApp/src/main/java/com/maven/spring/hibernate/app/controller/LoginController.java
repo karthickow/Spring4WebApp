@@ -1,4 +1,4 @@
-package com.spring4.web.controller;
+package com.maven.spring.hibernate.app.controller;
 
 import java.security.Principal;
 
@@ -13,13 +13,11 @@ public class LoginController {
 	@RequestMapping(value="/welcome", method=RequestMethod.GET)
 	public String printWelcome(ModelMap modelMap, Principal principal){
 		
-		System.out.println("********LoginController Called********");
-		
 		String name  =  principal.getName();
 		modelMap.addAttribute("username", name);
 		modelMap.addAttribute("message", "Spring Security Custom Form example");
 		
-		return "hello";
+		return "welcome";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
@@ -27,7 +25,7 @@ public class LoginController {
 		return "login";
 	}
 
-	@RequestMapping(value="/loginfailed", method=RequestMethod.GET)
+	@RequestMapping(value="/loginFailed", method=RequestMethod.GET)
 	public String loginerror(ModelMap modelMap){		
 		modelMap.addAttribute("error", "true");		
 		return "login";
@@ -40,6 +38,6 @@ public class LoginController {
 	
 	@RequestMapping(value="/*", method=RequestMethod.GET)
 	public String home(ModelMap modelMap){
-		return "home";
+		return "login";
 	}	
 }

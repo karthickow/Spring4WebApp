@@ -18,7 +18,7 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeManager employeeManager;
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(value="/load", method=RequestMethod.GET)
 	public String listEmployees(ModelMap modelMap){
 		
 		modelMap.addAttribute("employee", new Employee());
@@ -32,7 +32,7 @@ public class EmployeeController {
        
 		employeeManager.addEmployee(employee);
         
-		return "redirect:/";
+		return "redirect:/load";
     }
  
     @RequestMapping("/delete/{employeeId}")
@@ -40,7 +40,7 @@ public class EmployeeController {
     	
     	employeeManager.deleteEmployee(employeeId);
         
-    	return "redirect:/";
+    	return "redirect:/load";
     }
  
     public void setEmployeeManager(EmployeeManager employeeManager) {

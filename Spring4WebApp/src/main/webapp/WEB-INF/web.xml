@@ -27,9 +27,10 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>			
-			<!-- /WEB-INF/config/spring-jms.xml -->
-			/WEB-INF/config/datasource.xml			
+			/WEB-INF/config/mvc-dispatcher-servlet.xml								
+			/WEB-INF/config/emp-datasource.xml
 			/WEB-INF/config/spring-security.xml
+			<!-- /WEB-INF/config/spring-jms.xml -->			
 		</param-value>
 	</context-param>
 

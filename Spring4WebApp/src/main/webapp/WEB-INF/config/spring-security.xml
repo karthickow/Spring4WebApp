@@ -30,7 +30,7 @@
 			</security:user-service> -->
 			<!-- Validating credentials against database -->
 			<security:jdbc-user-service authorities-by-username-query="${auth_query}" 
-			 	users-by-username-query="${user_query}"	data-source-ref="securityDataSource"/>
+			 	users-by-username-query="${user_query}"	data-source-ref="dataSource"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
 

@@ -36,6 +36,8 @@
 	
 	<bean id="employeeDAO" class="com.maven.spring.hibernate.app.impl.EmployeeDaoImpl"/>		
 	<bean id="employeeManager" class="com.maven.spring.hibernate.app.serviceimpl.EmployeeManagerImpl"/>
+	<bean id="userDAO" class="com.sprsec.dao.UserDAOImpl"/>
+	<bean id="roleDAO" class="com.sprsec.dao.RoleDAOImpl"/>
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">

@@ -6,18 +6,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class LoginController {
 	
 	@RequestMapping(value="/welcome", method=RequestMethod.GET)
-	public String printWelcome(ModelMap modelMap, Principal principal){
+	public String printWelcome(ModelMap modelMap, Principal principal, final RedirectAttributes redirectAttributes){
 		
-		String name  =  principal.getName();
-		modelMap.addAttribute("username", name);
-		modelMap.addAttribute("message", "Spring Security Custom Form example");
+		/*modelMap.addAttribute("username", name);
+		modelMap.addAttribute("message", "Spring Security Custom Form example");*/
+		redirectAttributes.addFlashAttribute("username", principal.getName());
+		redirectAttributes.addFlashAttribute("message", "Spring Security Custom Form example");
 		
-		return "welcome";
+		return "redirect:/load";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
@@ -36,7 +38,7 @@ public class LoginController {
 		return "login";
 	}
 	
-	@RequestMapping(value="/*", method=RequestMethod.GET)
+	@RequestMapping(value="/hello*", method=RequestMethod.GET)
 	public String home(ModelMap modelMap){
 		return "login";
 	}	

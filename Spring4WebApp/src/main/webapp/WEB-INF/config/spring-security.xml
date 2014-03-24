@@ -8,30 +8,48 @@
 						http://www.springframework.org/schema/security/spring-security.xsd">
 	
 	<security:http auto-config="true">
+		<security:intercept-url pattern="/sec/moderation.html" access="ROLE_MODERATOR" />
+		<security:intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
+			
+		<security:form-login login-page="/user-login.html" 
+					default-target-url="/success-login.html"
+					authentication-failure-url="/error-login.html" />
+					
+		<security:logout logout-success-url="/index.html" />
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="customUserDetailsService">
+			<security:password-encoder hash="plaintext" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+<!-- <security:http auto-config="true">
+		
 		<security:intercept-url pattern="/welcome*" access="ROLE_USER,ROLE_ADMIN"/>
-		<!-- <security:http-basic/> -->
-		<!-- <security:form-login/>
-		<security:logout logout-success-url="/home"/> -->
+		<security:http-basic/>
+		<security:form-login/>
+		<security:logout logout-success-url="/home"/>
 		
 		<security:form-login login-page="/login" default-target-url="/welcome"
 							  authentication-failure-url="/loginFailed"/>
 		<security:logout logout-success-url="/logout"/>
 		
-	</security:http>
+	</security:http> -->
 	
-	<security:authentication-manager>
+<!-- 	<security:authentication-manager>
 		<security:authentication-provider>
-		<!-- Encoding password using algorithm -->
-		<!-- <security:password-encoder hash="sha-256"/>
+		Encoding password using algorithm
+		<security:password-encoder hash="sha-256"/>
 			<security:user-service>
 				<security:user name="karthick" password="123" authorities="ROLE_USER"/>
 				<security:user name="karthick" password="da70dfa4d9f95ac979f921e8e623358236313f334afcd06cddf8a5621cf6a1e9" authorities="ROLE_USER"/>
 				<security:user name="kaviya" password="97a6d21df7c51e8289ac1a8c026aaac143e15aa1957f54f42e30d8f8a85c3a55" authorities="ROLE_USER"/>
-			</security:user-service> -->
-			<!-- Validating credentials against database -->
+			</security:user-service>
+			Validating credentials against database
 			<security:jdbc-user-service authorities-by-username-query="${auth_query}" 
 			 	users-by-username-query="${user_query}"	data-source-ref="dataSource"/>
 		</security:authentication-provider>
-	</security:authentication-manager>
+	</security:authentication-manager> -->
 
 </beans>

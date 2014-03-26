@@ -24,5 +24,18 @@ public class SecurityNavigation {
 	public ModelAndView successLogin() {
 		return new ModelAndView("success-login");
 	}
+	
+	@RequestMapping(value="/expired-session", method=RequestMethod.GET)
+	public ModelAndView invalidSession() {
+		ModelAndView modelAndView = new ModelAndView("expired-session");
+		modelAndView.addObject("error", true);
+		return modelAndView;
+	}
 
+	@RequestMapping(value="/invalid-session", method=RequestMethod.GET)
+	public ModelAndView duplicateSession() {
+		ModelAndView modelAndView = new ModelAndView("invalid-session");
+		modelAndView.addObject("error", true);
+		return modelAndView;
+	}
 }

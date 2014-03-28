@@ -1,5 +1,7 @@
 package com.maven.spring.hibernate.app.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,23 +17,31 @@ import com.maven.spring.hibernate.app.service.EmployeeManager;
 @Controller
 public class EmployeeController {
 	
+	private static final Logger logger = LogManager.getLogger(EmployeeController.class.getName());
+	
 	@Autowired
 	private EmployeeManager employeeManager;
 	
 	@RequestMapping(value="/load", method=RequestMethod.GET)
 	public String listEmployees(ModelMap modelMap){
+		logger.info("Entering listEmployees method");
 		
 		modelMap.addAttribute("employee", new Employee());
 		modelMap.addAttribute("employeeList", employeeManager.getAllEmployees());
+		
+		logger.info("Employees Retrieved Successfully");
 		
 		return "editEmployeeList";
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addEmployee(@ModelAttribute(value="employee") Employee employee, BindingResult result){
-       
+		logger.info("Employee {} is about to be added", employee.getFirstname());
+		
 		employeeManager.addEmployee(employee);
         
+		logger.info("Employee {} added successfully", employee.getFirstname());
+		
 		return "redirect:/load";
     }
  

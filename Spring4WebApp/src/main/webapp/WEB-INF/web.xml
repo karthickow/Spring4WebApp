@@ -35,32 +35,11 @@
 	
 	<!-- log4j2 end -->
 	
-	<!-- Spring 4 dispatcher servlet initialization Start -->
-	<servlet>
-		<servlet-name>mvc-dispatcher</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/config/mvc-dispatcher-servlet.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>mvc-dispatcher</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-	<!-- Spring 4 dispatcher servlet End -->
-	
-	
 	<!-- Spring 4 Main configuration file for this Spring web application. -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>			
-			/WEB-INF/config/mvc-dispatcher-servlet.xml								
-			/WEB-INF/config/emp-datasource.xml
-			/WEB-INF/config/spring-security.xml
-			<!-- /WEB-INF/config/spring-jms.xml -->			
+			/WEB-INF/config/Spring4WebApp-servlet.xml				
 		</param-value>			
 	</context-param>
 	
@@ -76,6 +55,23 @@
 		<param-value>bootstrap</param-value>
 	</context-param> -->
 	<!-- JSF2 Context param End -->
+	
+	<!-- Spring 4 dispatcher servlet initialization Start -->
+	<servlet>
+		<servlet-name>Spring4WebApp</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value/>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Spring4WebApp</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<!-- Spring 4 dispatcher servlet End -->
 		
 	<!-- The Bootstrap listener to start up and shut down Spring's root WebApplicationContext. It is registered to Servlet Container -->
 	<listener>
@@ -93,7 +89,7 @@
 	
 	<!-- Session timeout duration -->
 	<session-config>
-		<session-timeout>3</session-timeout>
+		<session-timeout>30</session-timeout>
 	</session-config>
 
 	<!-- Character encoding for all request -->

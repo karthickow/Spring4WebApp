@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table(name="USERS")
 public class User {
@@ -21,10 +23,12 @@ public class User {
 	@SequenceGenerator(name="USERS_SEQ", sequenceName="USERS_SEQ")
 	@GeneratedValue(generator="USERS_SEQ", strategy=GenerationType.SEQUENCE)
 	private Integer id;
-
+	
+	@NotBlank
 	@Column(name="USERNAME")
 	private String userName;	
 	
+	@NotBlank
 	@Column(name="PASSWORD")
 	private String password;
 	

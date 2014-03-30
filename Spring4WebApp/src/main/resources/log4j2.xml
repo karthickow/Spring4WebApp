@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="debug">
+<Configuration status="info">
 	<Properties>
 		<Property name="fileName">D:/Karthick/log/Sprin4WebApp.log</Property>
 		<Property name="fileNamePattern">D:/Karthick/log/$${date:yyyy-MM-dd}/${name}_%d{yyyy-MM-dd}_%i.log.gz</Property>
@@ -16,14 +16,14 @@
 			<PatternLayout pattern="${logPattern}"/>
 			<Policies>
 				<TimeBasedTriggeringPolicy />
-				<SizeBasedTriggeringPolicy size="5MB" /> 
+				<SizeBasedTriggeringPolicy size="2MB" /> 
 			</Policies>
 		</RollingFile>
 		
 	</Appenders>
 	
 	<Loggers>
-		<Root level="debug"> 
+		<Root level="info"> 
 			<AppenderRef ref="Console"/> 
 			<AppenderRef ref="MyRollingFile"/>
 		</Root>

@@ -34,7 +34,7 @@ h1, hr {
     background-color: #333; 
     color: white;
 	padding: 5px;
-	width: 300px;
+	width: 340px;
 	height: 160px;
 	margin: auto;
 	text-align: center;
@@ -95,8 +95,4 @@ h1, hr {
 .menu ul li a:hover, .menu ul li .current {
     color: #fff;
     background-color:#0b75b2;
-}
-
-.error {
-	color: red;
 }

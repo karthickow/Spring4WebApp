@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name="EMPLOYEE")
 public class Employee {
@@ -23,7 +25,8 @@ public class Employee {
  
     @Column(name="LASTNAME")
     private String lastname;
- 
+    
+    @NotEmpty
     @Column(name="EMAIL")
     private String email;
  

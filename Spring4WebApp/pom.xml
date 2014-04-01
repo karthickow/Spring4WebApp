@@ -32,6 +32,20 @@
 				</configuration>
 				<version>2.4</version>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://10.142.119.105:8085/manager/text</url>
+					<server>tomcat7</server>
+					<path>/${context.path}</path>
+					<mode>war</mode>
+					<update>true</update>
+					<warFile>${project.build.directory}/${context.path}.war</warFile>
+					<!-- <port>8085</port> -->				
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	

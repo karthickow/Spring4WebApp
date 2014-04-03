@@ -1,5 +1,7 @@
 package com.maven.spring.hibernate.app.controller;
 
+import javax.validation.Valid;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.maven.spring.hibernate.app.entity.Employee;
 import com.maven.spring.hibernate.app.service.EmployeeManager;
@@ -35,8 +38,16 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addEmployee(@ModelAttribute(value="employee") Employee employee, BindingResult result){
+    public String addEmployee(@Valid @ModelAttribute(value="employee") Employee employee, BindingResult result, final RedirectAttributes redirectAttributes){
 		logger.info("Employee {} is about to be added", employee.getFirstname());
+		
+		if (result.hasErrors()) {
+			logger.error("number of errors is {}", result.getAllErrors().size());
+			redirectAttributes.addFlashAttribute("binding",result);
+			return "redirect:/load";
+			//return "editEmployeeList";
+			//return "/load";
+		}
 		
 		employeeManager.addEmployee(employee);
         

@@ -35,12 +35,13 @@
 			    
 			    <tr>
 			        <td><form:label path="lastname"><spring:message code="label.lastname"/></form:label></td>
-			        <td><form:input path="lastname" /></td>
+			        <td><form:input path="lastname" /></td>			       
 			    </tr>
 			    
 			    <tr>
 			        <td><form:label path="email"><spring:message code="label.email"/></form:label></td>
 			        <td><form:input path="email" /></td>
+			         <td><form:errors path="email" cssClass="message"/></td>
 			    </tr>
 			    
 			    <tr>

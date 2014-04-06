@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.maven.spring.hibernate.app.entity.Employee;
 import com.maven.spring.hibernate.app.service.EmployeeManager;
@@ -38,15 +37,15 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addEmployee(@Valid @ModelAttribute(value="employee") Employee employee, BindingResult result, final RedirectAttributes redirectAttributes){
+    public String addEmployee(@Valid @ModelAttribute(value="employee") Employee employee, BindingResult result, ModelMap model){
 		logger.info("Employee {} is about to be added", employee.getFirstname());
 		
 		if (result.hasErrors()) {
 			logger.error("number of errors is {}", result.getAllErrors().size());
-			redirectAttributes.addFlashAttribute("binding",result);
-			return "redirect:/load";
-			//return "editEmployeeList";
-			//return "/load";
+			//model.addAttribute("employee", new Employee());
+			model.addAttribute("employeeList", employeeManager.getAllEmployees());
+			/*model.addAttribute("errors", result);*/
+			return "editEmployeeList";
 		}
 		
 		employeeManager.addEmployee(employee);

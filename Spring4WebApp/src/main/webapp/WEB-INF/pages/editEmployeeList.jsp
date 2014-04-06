@@ -17,13 +17,13 @@
 	  
 		<%-- <h2>Employee Management Screen : Maven2 Spring4 hibernate4 Integration Example</h2> <a href='<c:url value="/j_spring_security_logout"/>'>Logout</a> --%>
 		<jsp:include page="menu.jsp" />
-		<h1 id="banner">Employee Management Screen</h1>
+		 <h1 id="banner">Employee Management Screen</h1>
 		<hr/>
 		
-		<h3>Message : ${message}</h3>
+		<%--<h3>Message : ${message}</h3>
 		<h3>Username : ${username}</h3>
 		
-		<hr/>
+		<hr/> --%>
 		
 		<form:form method="post" action="add" commandName="employee">
 		  

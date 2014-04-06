@@ -27,12 +27,12 @@ public class Employee {
     @Column(name="LASTNAME")
     private String lastname;
     
-    @NotEmpty(message="Please enter your e-mail.")
+    @NotEmpty
     @Email
     @Column(name="EMAIL")
     private String email;
  
-    @Column(name="TELEPHONE")
+    @Column(name="TELEPHONE")   
     private String telephone;
 
 	public Integer getId() {

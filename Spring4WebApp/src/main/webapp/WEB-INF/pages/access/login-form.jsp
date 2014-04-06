@@ -64,7 +64,7 @@
 		<p>
 			<%-- <c:if test="${error == true}"> --%>
 			<c:if test="${not empty error}">
-				<div class="message">
+				<div id="infomessage"  class="message">
 					<spring:message code="login.error"/><br />
 					${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 				</div>

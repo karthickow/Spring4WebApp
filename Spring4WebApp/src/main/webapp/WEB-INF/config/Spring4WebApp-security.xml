@@ -22,7 +22,8 @@
 		<security:access-denied-handler error-page="/denied" />	
 		<security:logout invalidate-session="true" delete-cookies="JSESSIONID" logout-success-url="/logout/success" logout-url="/logout" />
 		
-		<security:session-management session-authentication-error-url="/invalid-session">
+		<!-- <security:session-management session-authentication-error-url="/invalid-session"> -->
+		<security:session-management>
 			<security:concurrency-control expired-url="/expired-session" max-sessions="1" error-if-maximum-exceeded="true" />
 		</security:session-management>
 		

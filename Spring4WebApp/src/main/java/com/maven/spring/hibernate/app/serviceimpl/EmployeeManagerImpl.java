@@ -18,14 +18,20 @@ public class EmployeeManagerImpl implements EmployeeManager {
 	
 	@Override
 	@Transactional
+	public List<Employee> getAllEmployees() {
+		return employeeDAO.getAllEmployees();
+	}
+	
+	@Override
+	@Transactional
 	public void addEmployee(Employee employee) {
 		employeeDAO.addEmployee(employee);
 	}
-
+	
 	@Override
 	@Transactional
-	public List<Employee> getAllEmployees() {
-		return employeeDAO.getAllEmployees();
+	public void updateEmployee(Employee employee) {
+		employeeDAO.updateEmployee(employee);
 	}
 
 	@Override
@@ -37,5 +43,4 @@ public class EmployeeManagerImpl implements EmployeeManager {
 	public void setEmployeeDAO(EmployeeDAO employeeDAO) {
 		this.employeeDAO = employeeDAO;
 	}
-
 }

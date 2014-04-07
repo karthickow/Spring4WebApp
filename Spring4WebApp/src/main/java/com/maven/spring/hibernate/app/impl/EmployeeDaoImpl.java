@@ -14,18 +14,23 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	@Override
-	public void addEmployee(Employee employee) {
-		this.sessionFactory.getCurrentSession().save(employee);
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> getAllEmployees() {
 		return this.sessionFactory.getCurrentSession().createQuery("from Employee").list();
 	}
+	
+	@Override
+	public void addEmployee(Employee employee) {
+		this.sessionFactory.getCurrentSession().save(employee);
+	}
 
+	@Override
+	public void updateEmployee(Employee employee) {
+		this.sessionFactory.getCurrentSession().merge(employee);
+	}
+	
 	@Override
 	public void deleteEmployee(Integer employeeId) {
 		Employee employee = (Employee)this.sessionFactory.getCurrentSession().load(Employee.class, employeeId);

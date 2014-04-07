@@ -1,5 +1,7 @@
 package com.maven.spring.hibernate.app.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.maven.spring.hibernate.app.entity.Employee;
 import com.maven.spring.hibernate.app.service.EmployeeManager;
@@ -32,12 +35,18 @@ public class EmployeeController {
 		modelMap.addAttribute("employeeList", employeeManager.getAllEmployees());
 		
 		logger.info("Employees Retrieved Successfully");
-		
-		return "editEmployeeList";
+		//return "editEmployeeList";
+		return "employee";
 	}
 	
+	@RequestMapping(value="/allemployees", method=RequestMethod.GET)  
+    @ResponseBody  
+    public List<Employee> allEmployees() {  
+        return employeeManager.getAllEmployees();  
+    }  
+	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addEmployee(@Valid @ModelAttribute(value="employee") Employee employee, BindingResult result, ModelMap model){
+    public @ResponseBody String addEmployee(@Valid @ModelAttribute(value="employee") Employee employee, BindingResult result, ModelMap model){
 		logger.info("Employee {} is about to be added", employee.getFirstname());
 		
 		if (result.hasErrors()) {
@@ -45,7 +54,8 @@ public class EmployeeController {
 			//model.addAttribute("employee", new Employee());
 			model.addAttribute("employeeList", employeeManager.getAllEmployees());
 			/*model.addAttribute("errors", result);*/
-			return "editEmployeeList";
+			//return "editEmployeeList";
+			return "employee";
 		}
 		
 		employeeManager.addEmployee(employee);
@@ -55,8 +65,16 @@ public class EmployeeController {
 		return "redirect:/load";
     }
  
+	@RequestMapping("/update")
+    public @ResponseBody String updateEmployee(@PathVariable("employeeId") Employee employee){
+    	
+    	employeeManager.updateEmployee(employee);
+        
+    	return "redirect:/load";
+    }
+	
     @RequestMapping("/delete/{employeeId}")
-    public String deleteEmplyee(@PathVariable("employeeId") Integer employeeId){
+    public @ResponseBody String deleteEmployee(@PathVariable("employeeId") Integer employeeId){
     	
     	employeeManager.deleteEmployee(employeeId);
         

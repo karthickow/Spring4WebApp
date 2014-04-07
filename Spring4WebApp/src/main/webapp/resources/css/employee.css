@@ -1,0 +1,109 @@
+body {
+	font-family: Arial, sans-serif;
+	width: 900px;
+	margin: auto;
+}
+
+h1,h2,hr {
+	margin: 0px;
+	padding: 0px;
+}
+
+#banner {
+	background: lime;
+	padding: 5px;
+	color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	display: block;
+}
+
+#controlBar {
+	padding-top: 3px;
+}
+
+table {
+	border: 1px solid;
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 5px;
+}
+
+tr,td,th {
+	border: 1px solid;
+	text-align: left;
+	padding: 5px;
+}
+
+caption {
+	font-weight: bold;
+	text-align: left;
+}
+
+form {
+	margin-top: 30px;
+	width: 60%;
+}
+
+legend {
+	font-weight: bold;
+}
+
+form input {
+	float: right;
+}
+
+fieldset input,fieldset select {
+	margin-left: 10px;
+	float: none;
+}
+
+fieldset label {
+	float: left;
+	width: 80px;
+	text-align: right;
+}
+
+.menu {
+    width: 100%;
+    background-color: #333; 
+}
+    
+.menu ul {
+    margin: 0; 
+    padding: 0;
+    float: left;
+}
+ 
+.menu ul li {
+    display: inline;
+}
+ 
+.menu ul li a {
+    float: left; 
+    text-decoration: none;
+    color: white;
+    padding: 10.5px 11px;
+    background-color: #333; 
+}
+ 
+.menu ul li a:visited {
+    color: white;
+}
+ 
+.menu ul li a:hover, .menu ul li .current {
+    color: #fff;
+    background-color:#0b75b2;
+}
+
+#username {
+	color: red;
+	font-weight: bold;
+}
+
+#menu-username {
+	color: red;
+	float: right;
+	margin-top: 10px;
+	margin-right: 10px;
+}

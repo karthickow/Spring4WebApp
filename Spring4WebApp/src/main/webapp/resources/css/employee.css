@@ -1,5 +1,50 @@
+#tableEmployees {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin-bottom: 5px;	
+	margin-top: 5px;
+	width: 60%;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+#tableEmployees thead th.rounded-company {
+	background: #b9c9fe url('../images/left.png') left -1px no-repeat;
+}
+
+#tableEmployees thead th.rounded-telephone {
+	background: #b9c9fe url('../images/right.png') right -1px no-repeat;
+}
+
+#tableEmployees th {
+	padding: 8px;
+	font-weight: bold;
+	font-size: 13px;
+	color: #039;
+	background: #b9c9fe;
+}
+
+#tableEmployees td {
+	padding: 8px;
+	background: #e8edff;
+	border-top: 1px solid #fff;
+	color: #669;
+}
+
+#tableEmployees tfoot td.rounded-foot-left {
+	background: #e8edff url('../images/botleft.png') left bottom no-repeat;
+}
+
+#tableEmployees tfoot td.rounded-foot-right {
+	background: #e8edff url('../images/botright.png') right bottom no-repeat;
+}
+
+#tableEmployees tbody tr:hover td {
+	background: #d0dafd;
+}
+
 body {
-	font-family: Arial, sans-serif;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	width: 900px;
 	margin: auto;
 }
@@ -10,9 +55,8 @@ h1,h2,hr {
 }
 
 #banner {
-	background: lime;
-	padding: 5px;
-	color: white;
+	background: #e8edff;
+	padding: 5px;	
 	margin-top: 5px;
 	margin-bottom: 5px;
 	display: block;
@@ -20,24 +64,6 @@ h1,h2,hr {
 
 #controlBar {
 	padding-top: 3px;
-}
-
-table {
-	border: 1px solid;
-	width: 100%;
-	border-collapse: collapse;
-	margin-bottom: 5px;
-}
-
-tr,td,th {
-	border: 1px solid;
-	text-align: left;
-	padding: 5px;
-}
-
-caption {
-	font-weight: bold;
-	text-align: left;
 }
 
 form {
@@ -53,6 +79,9 @@ form input {
 	float: right;
 }
 
+fieldset{
+	margin-bottom: 10px;
+}
 fieldset input,fieldset select {
 	margin-left: 10px;
 	float: none;
@@ -60,8 +89,43 @@ fieldset input,fieldset select {
 
 fieldset label {
 	float: left;
-	width: 80px;
+	width: 220px;
 	text-align: right;
+}
+
+input#editBtn, #newBtn, #deleteBtn, #reloadBtn, #editSubmit, #newSubmit, #closeNewForm, #closeEditForm {
+	cursor: pointer;
+	/*forces the cursor to change to a hand when the button is hovered*/
+	padding: 5px 25px; 				/*add some padding to the inside of the button*/
+	background: #e8edff; 			/*the colour of the button*/
+	border: 1px solid #33842a;
+	
+	/*required or the default border for the browser will appear*/
+	/*give the button curved corners, alter the size as required*/
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	
+	/*give the button a drop shadow*/
+	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, .75);
+	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, .75);
+	box-shadow: 0 0 4px rgba(0, 0, 0, .75);
+	
+	/*style the text*/	
+	font-weight:bold;
+}
+
+
+input#editBtn:hover, #newBtn:hover, #deleteBtn:hover, #reloadBtn:hover, #editSubmit:hover, #newSubmit:hover, #closeNewForm:hover, #closeEditForm:hover
+input#editBtn:focus, #newBtn:focus, #deleteBtn:focus, #reloadBtn:focus, #editSubmit:focus, #newSubmit:focus, #closeNewForm:focus, #closeEditForm:focus
+
+{
+	background-color: #b9c9fe; 				/*make the background a little darker*/
+	
+	/*reduce the drop shadow size to give a pushed button effect*/
+	-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .75);
+	-moz-box-shadow: 0 0 1px rgba(0, 0, 0, .75);
+	box-shadow: 0 0 1px rgba(0, 0, 0, .75);
 }
 
 .menu {

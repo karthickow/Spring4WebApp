@@ -2,16 +2,12 @@ package com.maven.spring.hibernate.app.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,56 +25,60 @@ public class EmployeeController {
 	
 	@RequestMapping(value="/load", method=RequestMethod.GET)
 	public String listEmployees(ModelMap modelMap){
-		logger.info("Entering listEmployees method");
+		Employee employee = new Employee();
+		modelMap.addAttribute("employee", employee);
 		
-		modelMap.addAttribute("employee", new Employee());
-		modelMap.addAttribute("employeeList", employeeManager.getAllEmployees());
-		
-		logger.info("Employees Retrieved Successfully");
-		//return "editEmployeeList";
 		return "employee";
 	}
 	
 	@RequestMapping(value="/allemployees", method=RequestMethod.GET)  
     @ResponseBody  
-    public List<Employee> allEmployees() {  
-        return employeeManager.getAllEmployees();  
+    public List<Employee> allEmployees() { 
+		logger.info("Entering allEmployees method");
+		
+		List<Employee> employees = employeeManager.getAllEmployees();
+		
+		logger.info("All Employees Retrieved Successfully");
+        
+		return employees;  		
     }  
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-    public @ResponseBody String addEmployee(@Valid @ModelAttribute(value="employee") Employee employee, BindingResult result, ModelMap model){
+	@ResponseBody
+    public Employee addEmployee(@RequestBody Employee employee){
 		logger.info("Employee {} is about to be added", employee.getFirstname());
-		
-		if (result.hasErrors()) {
-			logger.error("number of errors is {}", result.getAllErrors().size());
-			//model.addAttribute("employee", new Employee());
-			model.addAttribute("employeeList", employeeManager.getAllEmployees());
-			/*model.addAttribute("errors", result);*/
-			//return "editEmployeeList";
-			return "employee";
-		}
 		
 		employeeManager.addEmployee(employee);
         
 		logger.info("Employee {} added successfully", employee.getFirstname());
 		
-		return "redirect:/load";
+		return employee;
     }
  
-	@RequestMapping("/update")
-    public @ResponseBody String updateEmployee(@PathVariable("employeeId") Employee employee){
-    	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@ResponseBody
+    public Employee updateEmployee(@RequestBody Employee employee){
+		
+		logger.info("About to update Employee {}", employee.getFirstname());
+		
     	employeeManager.updateEmployee(employee);
         
-    	return "redirect:/load";
+    	logger.info("Employee {} updated successfully", employee.getFirstname());
+    	
+    	return employee;
     }
 	
-    @RequestMapping("/delete/{employeeId}")
-    public @ResponseBody String deleteEmployee(@PathVariable("employeeId") Integer employeeId){
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public  Employee deleteEmployee(@RequestBody Employee employee){
     	
-    	employeeManager.deleteEmployee(employeeId);
-        
-    	return "redirect:/load";
+    	logger.info("About to delete Employee {}", employee.getFirstname());
+    	
+    	employeeManager.deleteEmployee(employee.getId());
+    	
+    	logger.info("Employee {} deleted successfully", employee.getFirstname());
+    	
+    	return employee;
     }
  
     public void setEmployeeManager(EmployeeManager employeeManager) {

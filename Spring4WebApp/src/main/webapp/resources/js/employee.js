@@ -1,6 +1,3 @@
-/**
- * Contains custom JavaScript code
- */
 var urlHolder = new Object();
 
 function loadTable() {
@@ -9,13 +6,14 @@ function loadTable() {
 		
 		$('#tableEmployees').find('tbody').remove();
 
-		for ( var i = 0; i < response.length; i++) {
+		for ( var i = 0; i < response.length; i++) {			
 			var row = '<tr>';
 			row += '<td><input type="radio" name="index" id="index" value="' + i + '"></td>';
 			row += '<td>' + response[i].firstname + '</td>';
 			row += '<td>' + response[i].lastname + '</td>';
 			row += '<td>' + response[i].email + '</td>';
 			row += '<td>' + response[i].telephone + '</td>';
+			row += '<input type="hidden" name="editEmpId" id="editEmpId" value="' + response[i].id;
 			row += '</tr>';
 			$('#tableEmployees').append(row);
 		}
@@ -25,66 +23,82 @@ function loadTable() {
 	});
 }
 
-function submitNewRecord() {
-	$.post(urlHolder.add, {
-		firstname : $('#firstname').val(),
-		lastname : $('#lastname').val(),
-		email : $('#email').val(),
-		telephone : $('#telephone').val()		
-	}, function(response) {
-		if (response != null) {
-			loadTable();
-			toggleForms('hide');
-			toggleCrudButtons('show');
-			alert('Success! Record has been added.');
-		} else {
-			alert('Failure! An error has occurred!');
-		}
-	});
-}
-
-function submitDeleteRecord() {
-	var selected = $('input:radio[name=index]:checked').val();
-
-	$.post(urlHolder.del, {
-		username : $('#tableEmployees').data('model')[selected].username
-	}, function(response) {
-		if (response == true) {
-			loadTable(urlHolder.records);
-			alert('Success! Record has been deleted.');
-		} else {
-			alert('Failure! An error has occurred!');
-		}
-	});
-}
-
-function submitUpdateRecord() {
-	$.post(urlHolder.edit, {
-		firstname : $('#firstname').val(),
-		lastname : $('#lastname').val(),
-		email : $('#email').val(),
-		telephone : $('#telephone').val()
-	}, function(response) {
-		if (response != null) {
-			loadTable();
-			toggleForms('hide');
-			toggleCrudButtons('show');
-			alert('Success! Record has been edited.');
-		} else {
-			alert('Failure! An error has occurred!');
-		}
-	});
-}
-
-/*function getRole(role) {
-	if (role == 1) {
-		return 'Admin';
-	} else if (role == 2) {
-		return 'Regular';
-	} else {
-		return 'Unknown';
+function CRUD(action){
+	var urlAction = new Object();
+	var content = new Object(); 
+	var successMsg = new Object();
+	var failureMsg = new Object();
+	
+	if(action=='add'){
+		urlAction = urlHolder.add;		
+		content = {
+				firstname : $('#firstname').val(),
+				lastname : $('#lastname').val(),
+				email : $('#email').val(),
+				telephone : $('#telephone').val()
+			};
+		successMsg = 'Success! Record has been added.';
+		failureMsg = 'Failure! An error has occurred!';
 	}
-}*/
+	
+	if(action=='update'){
+		urlAction = urlHolder.edit;		
+		content = {
+			firstname : $('#editfirstname').val(),
+			lastname : $('#editlastname').val(),
+			email : $('#editemail').val(),
+			telephone : $('#edittelephone').val(),
+			id : $('#editEmpId').val()
+		};
+		successMsg = 'Success! Record has been edited.';
+		failureMsg = 'Failure! An error has occurred!';
+		
+	}
+	
+	if(action=='delete'){
+		urlAction = urlHolder.del;
+		var selected = $('input:radio[name=index]:checked').val();
+		content = {
+			firstname : $('#tableEmployees').data('model')[selected].firstname,
+			lastname :$('#tableEmployees').data('model')[selected].lastname,
+			email : $('#tableEmployees').data('model')[selected].email,
+			telephone : $('#tableEmployees').data('model')[selected].telephone,
+			id : $('#tableEmployees').data('model')[selected].id
+		};
+		
+		successMsg = 'Success! Record has been deleted.';
+		failureMsg = 'Failure! An error has occurred!';
+	}
+	
+	$.ajax({
+		headers : {
+			'Accept' : 'application/json',
+			'Content-Type' : 'application/json'
+		},
+		url : urlAction,
+		type : 'POST',
+		data : JSON.stringify(content),
+		dataType : 'json',
+		success : function(response, textStatus, jqXHR) {
+			if (response != null) {
+				if(action=='add' || action=='update'){
+					loadTable();
+					toggleForms('hide');
+					toggleCrudButtons('show');
+				}
+				else if(action=='delete'){
+					loadTable();
+				}
+				alert(successMsg);
+			} else {
+				alert(failureMsg);
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert(jqXHR + ' ' + textStatus + ' ' + errorThrown);
+		}
+	});
+}
 
 function hasSelected() {
 	var selected = $('input:radio[name=index]:checked').val();
@@ -96,14 +110,13 @@ function hasSelected() {
 	return true;
 }
 
-function fillEditForm(formEdit) {
+function fillEditForm() {
 	var selected = $('input:radio[name=index]:checked').val();
-	alert($('#tableEmployees').data('model')[selected].firstname);
-	alert($('#editfirstname'));
 	$('#editfirstname').val($('#tableEmployees').data('model')[selected].firstname);
 	$('#editlastname').val($('#tableEmployees').data('model')[selected].lastname);
 	$('#editemail').val($('#tableEmployees').data('model')[selected].email);
 	$('#edittelephone').val($('#tableEmployees').data('model')[selected].telephone);
+	$('#editEmpId').val($('#tableEmployees').data('model')[selected].id);
 }
 
 function resetNewForm() {

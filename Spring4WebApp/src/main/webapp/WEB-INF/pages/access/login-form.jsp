@@ -6,12 +6,13 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!DOCTYPE HTML>	
+
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Content-Language" content="English"/>
 		<link rel="stylesheet" type="text/css" media="screen" href="resources/css/style.css"/>
-		<title>Login</title>
+		<title><spring:message code="login.page.title"/></title>
 		
 		<script type="text/javascript">
 			function validate(loginForm){
@@ -38,15 +39,15 @@
 
 		<form name="loginForm" id="loginForm" class="login-form" action="j_spring_security_check" method="post">
 			<fieldset>
-				<legend>Login Here</legend>
+				<legend><spring:message code="login.page.legend"/></legend>
 	
 				<p>
-					<label for="j_username">Username</label> 
+					<label for="j_username"><spring:message code="login.label.username"/></label> 
 					<input id="j_username" name="j_username" size="20" maxlength="50" type="text"/>
 				</p>
 	
 				<p>
-					<label for="j_password">Password</label> 
+					<label for="j_password"><spring:message code="login.label.password"/></label> 
 					<input id="j_password" name="j_password" size="20" maxlength="50" type="password"/>
 				</p>
 				

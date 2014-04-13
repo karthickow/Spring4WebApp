@@ -26,17 +26,20 @@
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 			</props>
 		</property>			
+		<!-- Commented because hibernate.cfg.xml is used instead -->
 		<!-- <property name="annotatedClasses">
 			<list>
 				<value>com.maven.spring.hibernate.app.entity.Employee</value>
+				<value>com.sprsec.entity.User</value>
+				<value>com.sprsec.entity.Role</value>
 			</list>
 		</property>	 -->
 	</bean>
 	
-	<bean id="employeeDAO" class="com.maven.spring.hibernate.app.impl.EmployeeDaoImpl"/>		
-	<bean id="employeeManager" class="com.maven.spring.hibernate.app.serviceimpl.EmployeeManagerImpl"/>
-	<bean id="userDAO" class="com.sprsec.dao.UserDAOImpl"/>
-	<bean id="roleDAO" class="com.sprsec.dao.RoleDAOImpl"/>
+	<bean id="employeeDAO" class="com.maven.spring.hibernate.app.dao.impl.EmployeeDaoImpl"/>		
+	<bean id="employeeService" class="com.maven.spring.hibernate.app.service.impl.EmployeeServiceImpl"/>
+	<bean id="userDAO" class="com.sprsec.dao.impl.UserDAOImpl"/>
+	<bean id="roleDAO" class="com.sprsec.dao.impl.RoleDAOImpl"/>
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">

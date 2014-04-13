@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.maven.spring.hibernate.app.entity.Employee;
-import com.maven.spring.hibernate.app.service.EmployeeManager;
+import com.maven.spring.hibernate.app.service.EmployeeService;
 
 @Controller
 public class EmployeeController {
@@ -21,67 +21,50 @@ public class EmployeeController {
 	private static final Logger logger = LogManager.getLogger(EmployeeController.class.getName());
 	
 	@Autowired
-	private EmployeeManager employeeManager;
+	private EmployeeService employeeService;
 	
-	@RequestMapping(value="/load", method=RequestMethod.GET)
+	@RequestMapping(value="/employee/loadEmployee", method=RequestMethod.GET)
 	public String listEmployees(ModelMap modelMap){
+		logger.info("Employee page is loading...");
 		Employee employee = new Employee();
 		modelMap.addAttribute("employee", employee);
-		
+		logger.info("Employee page loaded.");
 		return "employee";
 	}
 	
-	@RequestMapping(value="/allemployees", method=RequestMethod.GET)  
+	@RequestMapping(value="/employee/allemployees", method=RequestMethod.GET)  
     @ResponseBody  
     public List<Employee> allEmployees() { 
-		logger.info("Entering allEmployees method");
-		
-		List<Employee> employees = employeeManager.getAllEmployees();
-		
-		logger.info("All Employees Retrieved Successfully");
-        
+		logger.info("Retrieving all employees...");
+		List<Employee> employees = employeeService.getAllEmployees();
+		logger.info("All Employees Retrieved Successfully.");
 		return employees;  		
     }  
 	
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/employee/add", method = RequestMethod.POST)
 	@ResponseBody
     public Employee addEmployee(@RequestBody Employee employee){
 		logger.info("Employee {} is about to be added", employee.getFirstname());
-		
-		employeeManager.addEmployee(employee);
-        
-		logger.info("Employee {} added successfully", employee.getFirstname());
-		
+		employeeService.addEmployee(employee);
+		logger.info("Employee {} added successfully.", employee.getFirstname());
 		return employee;
     }
  
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/employee/update", method = RequestMethod.POST)
 	@ResponseBody
     public Employee updateEmployee(@RequestBody Employee employee){
-		
-		logger.info("About to update Employee {}", employee.getFirstname());
-		
-    	employeeManager.updateEmployee(employee);
-        
-    	logger.info("Employee {} updated successfully", employee.getFirstname());
-    	
+		logger.info("Employee {} is about to be updated.", employee.getFirstname());
+		employeeService.updateEmployee(employee);
+    	logger.info("Employee {} updated successfully.", employee.getFirstname());
     	return employee;
     }
 	
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/employee/delete", method = RequestMethod.POST)
     @ResponseBody
-    public  Employee deleteEmployee(@RequestBody Employee employee){
-    	
-    	logger.info("About to delete Employee {}", employee.getFirstname());
-    	
-    	employeeManager.deleteEmployee(employee.getId());
-    	
-    	logger.info("Employee {} deleted successfully", employee.getFirstname());
-    	
+    public Employee deleteEmployee(@RequestBody Employee employee){
+    	logger.info("Employee {} is about to be deleted.", employee.getFirstname());
+    	employeeService.deleteEmployee(employee.getId());
+    	logger.info("Employee {} deleted successfully.", employee.getFirstname());
     	return employee;
-    }
- 
-    public void setEmployeeManager(EmployeeManager employeeManager) {
-        this.employeeManager = employeeManager;
     }
 }

@@ -23,22 +23,18 @@ function loadTable() {
 	});
 }
 
-function CRUD(action){
+function CRUD(action, successMsg, failureMsg){
 	var urlAction = new Object();
 	var content = new Object(); 
-	var successMsg = new Object();
-	var failureMsg = new Object();
 	
 	if(action=='add'){
 		urlAction = urlHolder.add;		
 		content = {
-				firstname : $('#firstname').val(),
-				lastname : $('#lastname').val(),
-				email : $('#email').val(),
-				telephone : $('#telephone').val()
-			};
-		successMsg = 'Success! Record has been added.';
-		failureMsg = 'Failure! An error has occurred!';
+			firstname : $('#firstname').val(),
+			lastname : $('#lastname').val(),
+			email : $('#email').val(),
+			telephone : $('#telephone').val()
+		};
 	}
 	
 	if(action=='update'){
@@ -50,9 +46,6 @@ function CRUD(action){
 			telephone : $('#edittelephone').val(),
 			id : $('#editEmpId').val()
 		};
-		successMsg = 'Success! Record has been edited.';
-		failureMsg = 'Failure! An error has occurred!';
-		
 	}
 	
 	if(action=='delete'){
@@ -65,9 +58,6 @@ function CRUD(action){
 			telephone : $('#tableEmployees').data('model')[selected].telephone,
 			id : $('#tableEmployees').data('model')[selected].id
 		};
-		
-		successMsg = 'Success! Record has been deleted.';
-		failureMsg = 'Failure! An error has occurred!';
 	}
 	
 	$.ajax({
@@ -100,10 +90,10 @@ function CRUD(action){
 	});
 }
 
-function hasSelected() {
+function hasSelected(msg) {
 	var selected = $('input:radio[name=index]:checked').val();
 	if (selected == undefined) {
-		alert('Select a record first!');
+		alert(msg);
 		return false;
 	}
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.maven.spring.hibernate.app.entity.Employee;
 
-public interface EmployeeManager {
+public interface EmployeeService {
 	public List<Employee> getAllEmployees();
 	public void addEmployee(Employee employee);
 	public void updateEmployee(Employee employee);

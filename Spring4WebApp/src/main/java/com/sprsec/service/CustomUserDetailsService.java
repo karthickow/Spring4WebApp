@@ -25,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	public UserDetails loadUserByUsername(String userName)	throws UsernameNotFoundException {
 		
-		com.sprsec.model.User domainUser = userDAO.getUser(userName);
+		com.sprsec.entity.User domainUser = userDAO.getUser(userName);
 		
 		boolean enabled = true;
 		boolean accountNonExpired = true;

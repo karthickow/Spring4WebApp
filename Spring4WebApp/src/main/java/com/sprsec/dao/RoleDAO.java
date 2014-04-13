@@ -1,6 +1,6 @@
 package com.sprsec.dao;
 
-import com.sprsec.model.Role;
+import com.sprsec.entity.Role;
 
 public interface RoleDAO {
 	

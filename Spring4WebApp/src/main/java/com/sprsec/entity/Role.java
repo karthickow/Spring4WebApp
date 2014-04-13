@@ -1,4 +1,4 @@
-package com.sprsec.model;
+package com.sprsec.entity;
 
 import java.util.Set;
 

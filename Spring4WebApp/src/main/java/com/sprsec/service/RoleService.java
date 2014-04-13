@@ -1,6 +1,6 @@
 package com.sprsec.service;
 
-import com.sprsec.model.Role;
+import com.sprsec.entity.Role;
 
 public interface RoleService {
 	

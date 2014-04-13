@@ -1,11 +1,12 @@
-package com.sprsec.service;
+package com.sprsec.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sprsec.dao.RoleDAO;
-import com.sprsec.model.Role;
+import com.sprsec.entity.Role;
+import com.sprsec.service.RoleService;
 
 @Service
 @Transactional

@@ -4,7 +4,7 @@
 <hibernate-configuration>
 	<session-factory>
 		<mapping class="com.maven.spring.hibernate.app.entity.Employee" />
-		<mapping class="com.sprsec.model.User" />
-		<mapping class="com.sprsec.model.Role" />
+		<mapping class="com.sprsec.entity.User" />
+		<mapping class="com.sprsec.entity.Role" />
 	</session-factory>
 </hibernate-configuration>

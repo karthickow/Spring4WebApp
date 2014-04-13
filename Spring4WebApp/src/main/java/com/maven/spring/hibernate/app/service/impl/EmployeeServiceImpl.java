@@ -1,4 +1,4 @@
-package com.maven.spring.hibernate.app.serviceimpl;
+package com.maven.spring.hibernate.app.service.impl;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.maven.spring.hibernate.app.dao.EmployeeDAO;
 import com.maven.spring.hibernate.app.entity.Employee;
-import com.maven.spring.hibernate.app.service.EmployeeManager;
+import com.maven.spring.hibernate.app.service.EmployeeService;
 
 @Service
-public class EmployeeManagerImpl implements EmployeeManager {
+public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	private EmployeeDAO employeeDAO;
@@ -38,9 +38,5 @@ public class EmployeeManagerImpl implements EmployeeManager {
 	@Transactional
 	public void deleteEmployee(Integer employeeId) {
 		employeeDAO.deleteEmployee(employeeId);
-	}
-
-	public void setEmployeeDAO(EmployeeDAO employeeDAO) {
-		this.employeeDAO = employeeDAO;
 	}
 }

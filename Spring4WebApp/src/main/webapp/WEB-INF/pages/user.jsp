@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!DOCTYPE HTML>
 
@@ -9,14 +10,12 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Content-Language" content="English"/>
 		<link rel="stylesheet" type="text/css" media="screen" href="resources/css/style.css" />
-		<title>User</title>
+		<title><spring:message code="user.page.title"/></title>
 	</head>
 
 	<body>
 		<jsp:include page="menu.jsp" />
-		<h1 id="banner">User</h1>
+		<h1 id="banner"><spring:message code="user.page.banner"/></h1>
 		<hr/>
-	
-		<p>All users can see this page</p>
 	</body>
 </html>

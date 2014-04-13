@@ -1,6 +1,6 @@
 package com.sprsec.dao;
 
-import com.sprsec.model.User;
+import com.sprsec.entity.User;
 
 public interface UserDAO {
 	

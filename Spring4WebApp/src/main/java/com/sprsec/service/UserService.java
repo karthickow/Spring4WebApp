@@ -1,6 +1,6 @@
 package com.sprsec.service;
 
-import com.sprsec.model.User;
+import com.sprsec.entity.User;
 
 public interface UserService {
 	

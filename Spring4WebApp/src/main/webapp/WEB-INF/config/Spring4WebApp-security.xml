@@ -7,33 +7,56 @@
 						http://www.springframework.org/schema/security 
 						http://www.springframework.org/schema/security/spring-security.xsd">
 	
-	<security:http pattern="/resources" security="none"/>
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:mymessages</value>
+			</list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8"/>
+	</bean>
 	
-	<security:http auto-config="true" use-expressions="true">
+	<!-- <security:http pattern="/resources" security="none"/> -->
+	
+	<security:http use-expressions="true" disable-url-rewriting="true">
+		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/login-form" access="permitAll" />
 		<security:intercept-url pattern="/logout" access="permitAll" />
 		<security:intercept-url pattern="/denied" access="permitAll" />
-		<security:intercept-url pattern="/" access="hasRole('ROLE_MODERATOR')" />
 		<security:intercept-url pattern="/user" access="hasRole('ROLE_MODERATOR')" />
 		<security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/load" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/employee" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/employee/*" access="hasRole('ROLE_ADMIN')" />
 	
-		<security:form-login login-page="/login-form" authentication-failure-url="/login/failure" default-target-url="/" />	
+		<security:form-login login-page="/login-form" authentication-failure-url="/failure" default-target-url="/home" />
 		<security:access-denied-handler error-page="/denied" />	
-		<security:logout invalidate-session="true" delete-cookies="JSESSIONID" logout-success-url="/logout/success" logout-url="/logout" />
+		<security:logout invalidate-session="false" delete-cookies="JSESSIONID" logout-success-url="/" logout-url="/logout" />
 		
-		<!-- <security:session-management session-authentication-error-url="/invalid-session"> -->
-		<security:session-management>
-			<security:concurrency-control expired-url="/expired-session" max-sessions="1" error-if-maximum-exceeded="true" />
+		<security:session-management invalid-session-url="/expired-session"> <!-- Redirects to this URL if session times out -->
+			<security:concurrency-control expired-url="/invalid-session" max-sessions="1" error-if-maximum-exceeded="true" /> <!-- Wont allow you to login second time because error-if-maximum-exceeded is set to true -->
+			<!-- <security:concurrency-control expired-url="/invalid-session" max-sessions="1" /> --> <!-- Allow you to login second time but invalidates the already logged-in session because max-sessions is set to 1 -->
 		</security:session-management>
 		
 	</security:http>
 	
 	<security:authentication-manager>
+		<security:ldap-authentication-provider 
+			user-search-filter="(uid={0})"
+			user-search-base="ou=users"
+			group-search-filter="(uniqueMember={0})"
+			group-search-base="ou=groups"
+			group-role-attribute="cn"
+			role-prefix="ROLE_">
+		</security:ldap-authentication-provider>
+	</security:authentication-manager>
+	
+	<security:ldap-server url="${ldap.url}"  manager-dn="${manager.dn}" manager-password="${manager.password}" />
+	
+<!-- 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="customUserDetailsService">
 			<security:password-encoder hash="plaintext" />
 		</security:authentication-provider>
-	</security:authentication-manager>
+	</security:authentication-manager> -->
 	
 <!-- <security:http auto-config="true">
 		

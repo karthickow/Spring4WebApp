@@ -1,4 +1,4 @@
-package com.maven.spring.hibernate.app.impl;
+package com.maven.spring.hibernate.app.dao.impl;
 
 import java.util.List;
 
@@ -38,7 +38,5 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 		if(null!=employee){
 			this.sessionFactory.getCurrentSession().delete(employee);
 		}
-		
 	}
-
 }

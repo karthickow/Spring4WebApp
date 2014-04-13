@@ -9,7 +9,7 @@
 	<display-name>Spring4WebApp</display-name>
 	
 	<!-- log4j2 start -->
-	<!-- <context-param>
+	<!--<context-param>
 		<param-name>isLog4jAutoInitializationDisabled</param-name>
 		<param-value>true</param-value>
 	</context-param> 
@@ -43,19 +43,6 @@
 		</param-value>			
 	</context-param>
 	
-	<!-- JSF2 Context param Start -->
-	<!-- Project Stage Level -->
-<!-- 	<context-param>
-		<param-name>javax.faces.PROJECT_STAGE</param-name>
-		<param-value>Development</param-value>
-	</context-param>
-	
-	<context-param>
-		<param-name>primefaces.THEME</param-name>
-		<param-value>bootstrap</param-value>
-	</context-param> -->
-	<!-- JSF2 Context param End -->
-	
 	<!-- Spring 4 dispatcher servlet initialization Start -->
 	<servlet>
 		<servlet-name>Spring4WebApp</servlet-name>
@@ -83,13 +70,9 @@
 		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
 	</listener>	
 		
-<!-- 	<listener>
-		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-	</listener> -->
-	
 	<!-- Session timeout duration -->
 	<session-config>
-		<session-timeout>30</session-timeout>
+		<session-timeout>5</session-timeout>
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
 
@@ -122,32 +105,6 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-<!-- JSF Servlet is defined to container 
-	<servlet>
-		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	
-    Map these files with JSF
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.jsf</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.faces</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.xhtml</url-pattern>
-    </servlet-mapping> -->
-
 
 <!-- 	<security-constraint>
 		<web-resource-collection>

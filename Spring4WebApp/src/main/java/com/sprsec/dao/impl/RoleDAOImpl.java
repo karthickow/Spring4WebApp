@@ -1,4 +1,4 @@
-package com.sprsec.dao;
+package com.sprsec.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.sprsec.model.Role;
+import com.sprsec.dao.RoleDAO;
+import com.sprsec.entity.Role;
 
 @Repository
 public class RoleDAOImpl implements RoleDAO {

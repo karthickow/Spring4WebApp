@@ -1,5 +1,22 @@
 version: 1
 
+dn: o=Spring4WebApp
+objectclass: extensibleObject
+objectclass: top
+objectclass: domain
+dc: Spring4WebApp
+o: Spring4WebApp
+
+dn: ou=users,o=Spring4WebApp
+objectClass: top
+objectClass: organizationalUnit
+ou: users
+
+dn: ou=groups,o=Spring4WebApp
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
 dn: cn=Kaviya Krishnan,ou=users,o=Spring4WebApp
 objectClass: top
 objectClass: inetOrgPerson
@@ -22,18 +39,26 @@ uid: karthick
 userPassword:: e1NTSEF9d1FMbzVqUzVrR3IyR3F2T04zMXhzQWtyNFg2ZjFIbG1XNEdxeFE9P
  Q==
 
+dn: cn=Mohankumar Krishnan,ou=users,o=Spring4WebApp
+objectClass: top
+objectClass: inetOrgPerson
+objectClass: person
+objectClass: organizationalPerson
+cn: Mohankumar Krishnan
+sn: Krishnan
+uid: mohan
+userPassword:: e1NTSEF9RXJicTVOeXh6cjNoRENlSnk2SE1tZ3hrS1FBcVhqalRMYSsydHc9P
+ Q==
+
 dn: cn=Moderator,ou=groups,o=Spring4WebApp
 objectClass: top
 objectClass: groupOfUniqueNames
 cn: Moderator
 uniqueMember: cn=Kaviya Krishnan,ou=users,o=Spring4WebApp
-uniqueMember: cn=Karthick Krishnan,ou=users,o=Spring4WebApp
-uniqueMember: cn=Mohankumar Krishnan,ou=users,o=Spring4WebApp
 
-dn: ou=users,o=Spring4WebApp
-objectClass: top
-objectClass: organizationalUnit
-ou: users
+uniqueMember: cn=Karthick Krishnan,ou=users,o=Spring4WebApp
+
+uniqueMember: cn=Mohankumar Krishnan,ou=users,o=Spring4WebApp
 
 dn: cn=Admin,ou=groups,o=Spring4WebApp
 objectClass: top
@@ -46,28 +71,5 @@ objectClass: top
 objectClass: groupOfUniqueNames
 cn: User
 uniqueMember: cn=Karthick Krishnan,ou=users,o=Spring4WebApp
+
 uniqueMember: cn=Kaviya Krishnan,ou=users,o=Spring4WebApp
-
-dn: cn=Mohankumar Krishnan,ou=users,o=Spring4WebApp
-objectClass: top
-objectClass: inetOrgPerson
-objectClass: person
-objectClass: organizationalPerson
-cn: Mohankumar Krishnan
-sn: Krishnan
-uid: mohan
-userPassword:: e1NTSEF9RXJicTVOeXh6cjNoRENlSnk2SE1tZ3hrS1FBcVhqalRMYSsydHc9P
- Q==
-
-dn: ou=groups,o=Spring4WebApp
-objectClass: top
-objectClass: organizationalUnit
-ou: groups
-
-dn: o=Spring4WebApp
-objectclass: extensibleObject
-objectclass: top
-objectclass: domain
-dc: Spring4WebApp
-o: Spring4WebApp
-

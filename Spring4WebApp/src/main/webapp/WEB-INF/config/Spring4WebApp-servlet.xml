@@ -6,6 +6,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<context:component-scan base-package="com.sprsec, com.maven.spring.hibernate.app.controller"/>
+	
 	<context:annotation-config/>
 		
 	<import resource="Spring4WebApp-mvc.xml"/>

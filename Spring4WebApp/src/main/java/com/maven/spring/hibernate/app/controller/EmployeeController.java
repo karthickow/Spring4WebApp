@@ -1,5 +1,6 @@
 package com.maven.spring.hibernate.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -34,11 +35,16 @@ public class EmployeeController {
 	
 	@RequestMapping(value="/employee/allemployees", method=RequestMethod.GET)  
     @ResponseBody  
-    public List<Employee> allEmployees() { 
+    public List<Employee> allEmployees() throws Exception { 
 		logger.info("Retrieving all employees...");
-		List<Employee> employees = employeeService.getAllEmployees();
-		logger.info("All Employees Retrieved Successfully.");
-		return employees;  		
+		List<Employee> employees = new ArrayList<Employee>();
+		try{
+			employees = employeeService.getAllEmployees();
+			logger.info("All Employees Retrieved Successfully.");
+		}catch(Exception exception){
+			logger.fatal("All Employees Retrieval failed", exception);
+		}
+		return employees; 		
     }  
 	
 	@RequestMapping(value = "/employee/add", method = RequestMethod.POST)

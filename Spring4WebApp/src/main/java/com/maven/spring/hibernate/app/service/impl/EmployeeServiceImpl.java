@@ -18,25 +18,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	@Transactional
-	public List<Employee> getAllEmployees() {
+	public List<Employee> getAllEmployees(){
 		return employeeDAO.getAllEmployees();
 	}
 	
 	@Override
 	@Transactional
-	public void addEmployee(Employee employee) {
+	public void addEmployee(Employee employee){
 		employeeDAO.addEmployee(employee);
 	}
 	
 	@Override
 	@Transactional
-	public void updateEmployee(Employee employee) {
+	public void updateEmployee(Employee employee){
 		employeeDAO.updateEmployee(employee);
 	}
 
 	@Override
 	@Transactional
-	public void deleteEmployee(Integer employeeId) {
+	public void deleteEmployee(Integer employeeId){
 		employeeDAO.deleteEmployee(employeeId);
 	}
 }

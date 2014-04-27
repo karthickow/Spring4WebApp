@@ -16,8 +16,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Employee {
 
 	@Id
+	/*@TableGenerator(name="empId", table="EMP_PK_TABLE", pkColumnName="EMP_KEY", pkColumnValue="EMP_VALUE",
+	allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="empId")*/
     @Column(name="ID")
-	@SequenceGenerator(name="EMP_SEQ", sequenceName="EMP_SEQ")
+	@SequenceGenerator(name="EMP_SEQ", sequenceName="EMP_SEQ", allocationSize=1)
 	@GeneratedValue(generator="EMP_SEQ", strategy=GenerationType.SEQUENCE)
     private Integer id;
  

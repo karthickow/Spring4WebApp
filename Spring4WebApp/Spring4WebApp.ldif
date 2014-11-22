@@ -54,11 +54,7 @@ dn: cn=Moderator,ou=groups,o=Spring4WebApp
 objectClass: top
 objectClass: groupOfUniqueNames
 cn: Moderator
-uniqueMember: cn=Kaviya Krishnan,ou=users,o=Spring4WebApp
-
-uniqueMember: cn=Karthick Krishnan,ou=users,o=Spring4WebApp
-
-uniqueMember: cn=Mohankumar Krishnan,ou=users,o=Spring4WebApp
+uniqueMember: cn=Kaviya Krishnan,ou=users,o=Spring4WebApp, cn=Karthick Krishnan,ou=users,o=Spring4WebApp, cn=Mohankumar Krishnan,ou=users,o=Spring4WebApp
 
 dn: cn=Admin,ou=groups,o=Spring4WebApp
 objectClass: top
@@ -70,6 +66,4 @@ dn: cn=User,ou=groups,o=Spring4WebApp
 objectClass: top
 objectClass: groupOfUniqueNames
 cn: User
-uniqueMember: cn=Karthick Krishnan,ou=users,o=Spring4WebApp
-
-uniqueMember: cn=Kaviya Krishnan,ou=users,o=Spring4WebApp
+uniqueMember: cn=Karthick Krishnan,ou=users,o=Spring4WebApp, cn=Kaviya Krishnan,ou=users,o=Spring4WebApp

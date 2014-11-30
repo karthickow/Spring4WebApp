@@ -1,3 +1,7 @@
+--CREATE USER manager identified by manager default tablespace USERS temporary tablespace TEMP profile DEFAULT quota UNLIMITED on USERS;
+--grant connect to manager;
+--grant create procedure, create session, create table, create type, create view, create synonym, create trigger, resource, create sequence to manager;
+
 -- DROP TRIGGER EMP_TRG
 -- DROP SEQUENCE EMP_SEQ
 -- DROP TABLE EMPLOYEE
@@ -120,3 +124,5 @@ SELECT * FROM Delegate;
 SELECT * FROM Event;
 SELECT * FROM JOIN_DELEGATE_EVENT;
 
+select profile from DBA_USERS where username = 'MANAGER';
+SELECT resource_name, limit FROM DBA_PROFILES WHERE profile = 'DEFAULT' AND resource_type = 'PASSWORD';

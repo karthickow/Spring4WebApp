@@ -10,10 +10,17 @@
 	<!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" p:locations="classpath:database.properties"/> -->
 	<context:property-placeholder location="classpath:database.properties"/>
 	
-	<bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
+<!-- 	<bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
 		<property name="connectionCachingEnabled" value="true"/>
 		<property name="URL" value="${url}"/>
 		<property name="user" value="${user}"/>
+		<property name="password" value="${password}"/>
+	</bean> -->
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${driverClassName}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${user}"/>
 		<property name="password" value="${password}"/>
 	</bean>
 	
@@ -22,7 +29,7 @@
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"/>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">${hibernate.oracle.dialect}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 			</props>
 		</property>			
@@ -38,8 +45,6 @@
 	
 	<bean id="employeeDAO" class="com.maven.spring.hibernate.app.dao.impl.EmployeeDaoImpl"/>		
 	<bean id="employeeService" class="com.maven.spring.hibernate.app.service.impl.EmployeeServiceImpl"/>
-	<bean id="userDAO" class="com.sprsec.dao.impl.UserDAOImpl"/>
-	<bean id="roleDAO" class="com.sprsec.dao.impl.RoleDAOImpl"/>
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">

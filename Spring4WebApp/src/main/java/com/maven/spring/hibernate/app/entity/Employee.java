@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Email;
@@ -20,8 +19,9 @@ public class Employee {
 	allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="empId")*/
     @Column(name="ID")
-	@SequenceGenerator(name="EMP_SEQ", sequenceName="EMP_SEQ", allocationSize=1)
-	@GeneratedValue(generator="EMP_SEQ", strategy=GenerationType.SEQUENCE)
+	/*@SequenceGenerator(name="EMP_SEQ", sequenceName="EMP_SEQ", allocationSize=1)
+	@GeneratedValue(generator="EMP_SEQ", strategy=GenerationType.SEQUENCE)*/
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
  
     @Column(name="FIRSTNAME")

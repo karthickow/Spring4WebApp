@@ -3,8 +3,6 @@
                                          "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<mapping class="com.maven.spring.hibernate.app.entity.Employee" />
-		<mapping class="com.sprsec.entity.User" />
-		<mapping class="com.sprsec.entity.Role" />
+		<mapping class="com.maven.spring.hibernate.app.entity.Employee" />		
 	</session-factory>
 </hibernate-configuration>
